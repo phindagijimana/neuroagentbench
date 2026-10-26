@@ -1,0 +1,10 @@
+{
+  "pins_file": "shared/pins.yaml",
+  "bids_validator": "3.0.2",
+  "dataset": "ds000003",
+  "t1w_path": "shared/data/external/ds000003/sub-01/anat/sub-01_T1w.nii.gz",
+  "t1w_sha256": "9cb6dc66d4e845a40f2317027aa60d0035cb95634b303f6c0efce961e1e2a4d6",
+  "t1w_bytes": 5712417,
+  "image_bytes_in_git": false,
+  "network_used": false
+}

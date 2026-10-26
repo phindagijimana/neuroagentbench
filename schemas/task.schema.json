@@ -19,7 +19,10 @@
     "resources",
     "review_status",
     "equivalent_solutions",
-    "license"
+    "license",
+    "dataset_snapshot",
+    "compute_tier",
+    "llm_judge_primary"
   ],
   "properties": {
     "task_id": { "type": "string" },
@@ -92,8 +95,11 @@
     },
     "llm_judge_primary": {
       "type": "boolean",
+      "const": false,
       "description": "Must be false. NeuroClaw NeuroBench already uses a GPT rubric as primary."
     },
+    "dataset_snapshot": { "type": "string" },
+    "compute_tier": { "type": "string" },
     "primary_layer": {
       "type": "string",
       "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]

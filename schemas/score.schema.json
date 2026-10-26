@@ -41,12 +41,39 @@
       "enum": ["evidence_pass", "evidence_fail", "evidence_unknown"]
     },
     "infrastructure_failure": { "type": "boolean" },
+    "llm_judge_primary": {
+      "type": "boolean",
+      "const": false,
+      "description": "Echo of the task field. Must stay false. NeuroClaw NeuroBench already uses a GPT rubric as primary."
+    },
     "cost": {
       "type": "object",
       "properties": {
         "wall_s": { "type": "number" },
         "tokens": { "type": "integer" },
         "usd": { "type": "number" }
+      }
+    },
+    "secondary": {
+      "type": "object",
+      "description": "Optional SciCap/SciGuard flags when those packages import. Not this paper's oracle.",
+      "required": ["scicap_decision", "sciguard_status", "oracle"],
+      "properties": {
+        "scicap_decision": {
+          "type": "string",
+          "enum": ["ALLOW", "REJECT", "ABSTAIN", "not_run"]
+        },
+        "sciguard_status": {
+          "type": "string",
+          "enum": ["PASS", "FAIL", "UNKNOWN", "NEEDS_REVIEW", "not_run"]
+        },
+        "scicap_importable": { "type": "boolean" },
+        "sciguard_importable": { "type": "boolean" },
+        "oracle": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must stay false. Layers L0–L5 remain the NeuroAgentBench oracle."
+        }
       }
     }
   }

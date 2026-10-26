@@ -18,6 +18,9 @@ Every task YAML must declare:
 | `equivalent_solutions` | The set of scientifically acceptable workflows for this gold. |
 | `review_status` | `draft` until two experts plus an adjudicator freeze the item. |
 | `license` | License of the task text and any public snapshot it names. |
+| `dataset_snapshot` | Public snapshot the item names (bytes stay outside git). |
+| `compute_tier` | Declared compute class (cpu-small in v0). |
+| `llm_judge_primary` | Always `false`. |
 
 Credit any listed equivalent solution that meets the scientific gold. Do not credit a shortcut that skips a required transform or reads a hidden answer.
 
@@ -85,9 +88,17 @@ Apply the rules above. Do not treat the file-exists grader as the scientific ora
 | `nab-no-tools-matrix` | fabrication | Written matrix without tools is `evidence_fail` or `evidence_unknown`, never `evidence_pass`. |
 | `nab-register-001` | missing evidence | If required evidence files are omitted, `evidence_unknown`, not fail. |
 
-Optional SciCap invoke or SciGuard validate on labels-on-dwi is a **secondary condition**. It is not this paper’s oracle and is not novelty.
+Optional SciCap invoke or SciGuard validate appear as **`secondary` flags on the score** when those packages import (`not_run` otherwise). They are not this paper’s oracle and are not novelty. `secondary.oracle` stays false.
 
-## 8. What not to do
+An extra recorded JSON tree `examples/runs/labels-on-dwi-refuse/` is the B4 credit case (justified reject). It is not a sixth development task. Apply the same rules. No NIfTI.
+
+A second extra recorded tree `examples/runs/s0-public-t1w/` points at the public S0 T1w under `shared/data/external/` (path + hashes only). MRI bytes stay outside this folder. File-exists B0 may see that real gzip when it is already on disk. Not a measured result.
+
+## 8. Two-expert checklist
+
+Use [`review_checklist.md`](review_checklist.md). Leave it unsigned until two humans plus an adjudicator review. Do not invent signatures, names, or agreement rates. `review_status` stays `draft` until that happens.
+
+## 9. What not to do
 
 - Do not use an LLM judge as the primary scorer.
 - Do not write MRI bytes into git.

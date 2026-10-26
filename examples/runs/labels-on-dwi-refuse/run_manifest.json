@@ -1,0 +1,10 @@
+{
+  "recorded": true,
+  "bytes_in_git": false,
+  "nifti_in_tree": false,
+  "dataset_snapshot": "shared/fixtures/invalid/labels_t1w_on_dwi",
+  "openneuro_accession": "ds000003",
+  "openneuro_doi": "10.18112/openneuro.ds000003.v1.0.0",
+  "license": "CC-BY-4.0",
+  "note": "Recorded JSON fixture for a justified reject. MRI bytes stay outside git. Not a measured result."
+}

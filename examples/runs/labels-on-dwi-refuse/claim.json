@@ -1,0 +1,8 @@
+{
+  "run_id": "labels-on-dwi-refuse",
+  "agent_id": "recorded-public-v0",
+  "scaffold_id": "recorded-v0",
+  "seed": 0,
+  "agent_claimed_success": false,
+  "gold_action_taken": "reject"
+}

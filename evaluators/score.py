@@ -13,6 +13,7 @@ from evaluators.l3 import evaluate_l3
 from evaluators.l4 import evaluate_l4
 from evaluators.l5 import evaluate_l5
 from evaluators.run_tree import RunRecord, load_run, load_task
+from evaluators.secondary import secondary_flags
 
 LAYER_FUNCS = {
     "L0": evaluate_l0,
@@ -105,6 +106,9 @@ def evaluate_run(task: dict[str, Any], run_dir: Path, seed: int | None = None) -
         "false_success": false_success,
         "evidence_status": _evidence_status(task, run, scientific_valid),
         "infrastructure_failure": False,
+        "llm_judge_primary": bool(task.get("llm_judge_primary", False)),
+        # B7 secondary arms only. Attached after the oracle; never read above.
+        "secondary": secondary_flags(task),
     }
     _validate(score, _SCORE_SCHEMA)
     return score

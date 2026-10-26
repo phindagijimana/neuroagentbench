@@ -1,0 +1,9 @@
+{
+  "space": "T1w",
+  "atlas": "DesikanKillianyTourville",
+  "atlas_order": "canonical",
+  "modality": "dwi",
+  "units": "streamline_count",
+  "transform_present": false,
+  "refused": true
+}

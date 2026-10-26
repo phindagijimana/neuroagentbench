@@ -14,6 +14,8 @@ This trace cites the public tool reused for each locked method and the literatur
 
 SWE-bench (Jimenez et al., ICLR 2024) owns recorded fixtures and a fail-to-pass file/unit-test grader. NeuroAgentBench reuses that discipline as `evaluators/file_exists.py`: pass iff required artifact files exist. No space, atlas, QC, or scientific oracle.
 
+When a recorded tree points at `shared/data/external/ds000003/sub-01/anat/sub-01_T1w.nii.gz`, B0 also reports whether that real gzip exists. Bytes stay outside this folder. Missing inputs do not change artifact status.
+
 Atlas-wrong is the honest residual of that public tool: the matrix file exists, so B0 passes.
 
 Do not copy MLR-Judge or NeuroClaw NeuroBench’s GPT-5.4 rubric.
@@ -28,7 +30,7 @@ Do not copy MLR-Judge or NeuroClaw NeuroBench’s GPT-5.4 rubric.
 | B2 | GroundEval / SciAgentArena invalid-premise | first-class `false_success` | atlas-wrong |
 | B3 | — | evidence Unknown ≠ fail | missing-evidence |
 | B4 | SciAgentArena invalid premise | abstain/reject gold | labels-on-dwi |
-| B5–B7 | construction fields | holdout empty; no factorial in v0 | schema tests |
+| B5–B7 | construction fields; SciCap/SciGuard secondary flags only | holdout empty; no factorial in v0; flags are not the oracle | schema tests; `test_wave4.py`; unsigned `docs/review_checklist.md` |
 
 ### Citations (what they own vs residual)
 

@@ -1,0 +1,6 @@
+{
+  "commands": [
+    {"name": "inspect_metadata", "completed": true, "exception": null},
+    {"name": "refuse_invalid_premise", "completed": true, "exception": null}
+  ]
+}

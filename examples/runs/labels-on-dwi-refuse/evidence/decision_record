@@ -1,0 +1,7 @@
+{
+  "action": "reject",
+  "gold_action_taken": "reject",
+  "reason": "T1w labels and DWI tractogram are in different spaces; transform is omitted (S0 labels_t1w_on_dwi).",
+  "prohibited_skipped": ["apply_labels_in_t1_space_to_dwi_tractogram"],
+  "matrix_written": false
+}

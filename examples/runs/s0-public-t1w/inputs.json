@@ -1,0 +1,8 @@
+{
+  "t1w": {
+    "path": "shared/data/external/ds000003/sub-01/anat/sub-01_T1w.nii.gz",
+    "sha256": "9cb6dc66d4e845a40f2317027aa60d0035cb95634b303f6c0efce961e1e2a4d6",
+    "bytes": 5712417,
+    "gzip_magic": "1f8b"
+  }
+}

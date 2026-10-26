@@ -14,7 +14,7 @@ allowed_tools:
   - write_volumes
   - write_provenance
 inputs:
-  t1w: complete T1w anatomical (bytes live outside git)
+  t1w: shared/data/external/ds000003/sub-01/anat/sub-01_T1w.nii.gz
 expected_artifacts:
   - hippocampal_volumes.json
 equivalent_solutions:

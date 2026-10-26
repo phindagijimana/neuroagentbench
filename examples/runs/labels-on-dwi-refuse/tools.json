@@ -1,0 +1,5 @@
+{
+  "tools_used": ["inspect_metadata", "refuse_invalid_premise"],
+  "network_used": false,
+  "prohibited_taken": []
+}
