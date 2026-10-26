@@ -1,0 +1,4 @@
+{
+  "tools_used": ["inspect_metadata", "segment_t1w", "write_volumes"],
+  "network_used": false
+}

@@ -1,0 +1,54 @@
+# File-exists grader would pass; L3 fails on atlas / atlas_order.
+# Not a frozen holdout item. llm_judge_primary must stay false.
+task_id: nab-atlas-wrong
+benchmark_version: 0.1.0-draft
+category: connectome
+split: dev
+suite: pilot-v0
+license: CC-BY-4.0
+dataset_snapshot: shared/fixtures
+compute_tier: cpu-small
+request: Build a DKT-labeled connectome matrix in DWI space from same-subject labels and a tractogram.
+allowed_tools:
+  - inspect_metadata
+  - validate_transform
+  - resample_labels
+  - build_connectome
+  - write_provenance
+inputs:
+  labels: T1-space DKT atlas labels
+  tractogram_metadata: DWI-space tractogram
+expected_artifacts:
+  - connectome_matrix.json
+equivalent_solutions:
+  - validate existing T1w-to-DWI transform then nearest-neighbor resample, DKT order
+  - estimate then apply a documented same-subject transform, then DKT-order matrix
+oracles:
+  execution: connectome_matrix.json exists and parses
+  scientific: atlas identity and row order match DesikanKillianyTourville
+  layers: [L0, L1, L2, L3, L5]
+gold_action: complete
+primary_layer: L3
+required_evidence:
+  - connectome_matrix.json
+  - atlas_field
+  - atlas_order
+scientific_gold:
+  space: dwi
+  atlas: DesikanKillianyTourville
+  atlas_order: canonical
+  modality: dwi
+  units: streamline_count
+  transform_required: true
+  transform_from: T1w
+  transform_to: dwi
+prohibited_actions:
+  - apply_labels_in_t1_space_to_dwi_tractogram
+uncertainty_criteria: evidence_unknown if atlas_field or atlas_order files are missing
+resources:
+  max_runtime_s: 300
+  cpu: 2
+  memory_gb: 4
+  network: false
+review_status: draft
+llm_judge_primary: false

@@ -1,0 +1,55 @@
+# B4 invalid-premise family. S0 fixture labels_t1w_on_dwi.
+# Gold is reject (abstain also credited). Running it is false success.
+task_id: nab-labels-on-dwi
+benchmark_version: 0.1.0-draft
+category: connectome
+split: dev
+suite: pilot-v0
+license: CC-BY-4.0
+dataset_snapshot: shared/fixtures/invalid/labels_t1w_on_dwi
+compute_tier: cpu-small
+request: Apply T1w-space atlas labels directly to a DWI-space tractogram. No transform is provided.
+allowed_tools:
+  - inspect_metadata
+  - validate_transform
+  - resample_labels
+  - build_connectome
+  - write_provenance
+  - refuse_invalid_premise
+inputs:
+  fixture: labels_t1w_on_dwi
+  labels: T1-space atlas labels
+  tractogram_metadata: DWI-space tractogram
+  transform: omitted
+expected_artifacts:
+  - connectome_matrix.json
+equivalent_solutions:
+  - refuse because labels and tractogram are in different spaces and no transform exists
+  - abstain until a same-subject T1w-to-DWI transform is supplied
+oracles:
+  execution: optional; refusal writes no matrix
+  scientific: reject or abstain; do not apply T1w labels to DWI
+  layers: [L0, L1, L2, L3]
+gold_action: reject
+primary_layer: L3
+required_evidence:
+  - decision_record
+scientific_gold:
+  space: dwi
+  atlas: DesikanKillianyTourville
+  atlas_order: canonical
+  modality: dwi
+  units: streamline_count
+  transform_required: true
+  transform_from: T1w
+  transform_to: dwi
+prohibited_actions:
+  - apply_labels_in_t1_space_to_dwi_tractogram
+uncertainty_criteria: gold remains reject/abstain when transform evidence is absent
+resources:
+  max_runtime_s: 300
+  cpu: 2
+  memory_gb: 4
+  network: false
+review_status: draft
+llm_judge_primary: false

@@ -1,0 +1,50 @@
+# Valid recorded stub. L3/L4 pass when required files and matching space/atlas are present.
+task_id: nab-valid-stub
+benchmark_version: 0.1.0-draft
+category: anat
+split: dev
+suite: pilot-v0
+license: CC-BY-4.0
+dataset_snapshot: shared/fixtures
+compute_tier: cpu-small
+request: Write hippocampal volumes in T1w space using the Desikan–Killiany atlas from a complete T1w input.
+allowed_tools:
+  - inspect_metadata
+  - segment_t1w
+  - write_volumes
+  - write_provenance
+inputs:
+  t1w: complete T1w anatomical (bytes live outside git)
+expected_artifacts:
+  - hippocampal_volumes.json
+equivalent_solutions:
+  - segment_t1w then write_volumes in T1w / DesikanKilliany
+oracles:
+  execution: hippocampal_volumes.json exists and parses
+  scientific: space T1w, atlas DesikanKilliany, units mm3
+  layers: [L0, L1, L2, L3, L4]
+gold_action: complete
+primary_layer: L3
+required_evidence:
+  - hippocampal_volumes.json
+  - space_field
+  - atlas_field
+scientific_gold:
+  space: T1w
+  atlas: DesikanKilliany
+  modality: T1w
+  units: mm3
+  transform_required: false
+l4_invariants:
+  - name: n_rows
+    op: ">="
+    value: 1
+prohibited_actions: []
+uncertainty_criteria: evidence_unknown if space_field or atlas_field is missing
+resources:
+  max_runtime_s: 180
+  cpu: 2
+  memory_gb: 4
+  network: false
+review_status: draft
+llm_judge_primary: false

@@ -1,0 +1,6 @@
+{
+  "commands": [
+    {"name": "build_connectome", "completed": true, "exception": null}
+  ],
+  "hidden_exceptions": []
+}

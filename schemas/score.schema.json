@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuroagentbench.local/schemas/score.schema.json",
+  "title": "NeuroAgentBench run score (B1–B3)",
+  "description": "Illustrative run record. Not a frozen evaluation contract.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "run_id",
+    "agent_id",
+    "layers",
+    "execution_success",
+    "scientific_valid",
+    "agent_claimed_success",
+    "false_success",
+    "evidence_status"
+  ],
+  "properties": {
+    "task_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "agent_id": { "type": "string" },
+    "scaffold_id": { "type": "string" },
+    "seed": { "type": "integer" },
+    "layers": {
+      "type": "object",
+      "properties": {
+        "L0": { "type": "string", "enum": ["pass", "fail", "not_applicable"] },
+        "L1": { "type": "string", "enum": ["pass", "fail", "not_applicable"] },
+        "L2": { "type": "string", "enum": ["pass", "fail", "not_applicable"] },
+        "L3": { "type": "string", "enum": ["pass", "fail", "not_applicable"] },
+        "L4": { "type": "string", "enum": ["pass", "fail", "not_applicable"] },
+        "L5": { "type": "string", "enum": ["pass", "fail", "not_applicable"] }
+      }
+    },
+    "execution_success": { "type": "boolean" },
+    "scientific_valid": { "type": "boolean" },
+    "agent_claimed_success": { "type": "boolean" },
+    "false_success": { "type": "boolean" },
+    "evidence_status": {
+      "type": "string",
+      "enum": ["evidence_pass", "evidence_fail", "evidence_unknown"]
+    },
+    "infrastructure_failure": { "type": "boolean" },
+    "cost": {
+      "type": "object",
+      "properties": {
+        "wall_s": { "type": "number" },
+        "tokens": { "type": "integer" },
+        "usd": { "type": "number" }
+      }
+    }
+  }
+}

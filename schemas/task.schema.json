@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neuroagentbench.local/schemas/task.schema.json",
+  "title": "NeuroAgentBench task record (B1, B4, B5)",
+  "description": "Illustrative schema from Paper 3 methods. Not a frozen evaluation contract.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "benchmark_version",
+    "category",
+    "split",
+    "request",
+    "allowed_tools",
+    "inputs",
+    "expected_artifacts",
+    "oracles",
+    "gold_action",
+    "required_evidence",
+    "resources",
+    "review_status",
+    "equivalent_solutions",
+    "license"
+  ],
+  "properties": {
+    "task_id": { "type": "string" },
+    "benchmark_version": { "type": "string" },
+    "category": {
+      "type": "string",
+      "enum": ["bids", "anat", "dwi", "connectome", "qc", "hpc", "safety"]
+    },
+    "split": {
+      "type": "string",
+      "enum": ["dev", "public_verified", "holdout"]
+    },
+    "request": { "type": "string" },
+    "allowed_tools": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "inputs": { "type": "object" },
+    "prerequisites": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "expected_artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "equivalent_solutions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "oracles": {
+      "type": "object",
+      "properties": {
+        "execution": { "type": "string" },
+        "scientific": { "type": "string" },
+        "layers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+          }
+        }
+      }
+    },
+    "gold_action": {
+      "type": "string",
+      "enum": ["complete", "abstain", "reject"]
+    },
+    "required_evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "uncertainty_criteria": { "type": "string" },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "max_runtime_s": { "type": "integer" },
+        "cpu": { "type": "integer" },
+        "memory_gb": { "type": "number" },
+        "network": { "type": "boolean" }
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "expert_reviewed", "adjudicated", "frozen"]
+    },
+    "llm_judge_primary": {
+      "type": "boolean",
+      "description": "Must be false. NeuroClaw NeuroBench already uses a GPT rubric as primary."
+    },
+    "primary_layer": {
+      "type": "string",
+      "enum": ["L0", "L1", "L2", "L3", "L4", "L5"]
+    },
+    "scientific_gold": { "type": "object" },
+    "l4_invariants": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "l5_pins": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "suite": { "type": "string" },
+    "license": { "type": "string" },
+    "fabrication_if_no_tools": { "type": "boolean" }
+  }
+}

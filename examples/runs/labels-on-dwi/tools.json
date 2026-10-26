@@ -1,0 +1,5 @@
+{
+  "tools_used": ["build_connectome"],
+  "network_used": false,
+  "prohibited_taken": ["apply_labels_in_t1_space_to_dwi_tractogram"]
+}

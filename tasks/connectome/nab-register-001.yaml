@@ -1,0 +1,58 @@
+# Illustrative task (Paper 3 methods B1, B3, B4, B5). Not a frozen holdout item.
+# Gold is reject/abstain if labels are used in T1w space on a DWI tractogram.
+# Used in v0 as the missing-evidence gold case when required_evidence files are omitted.
+task_id: nab-register-001
+benchmark_version: 0.1.0-draft
+category: connectome
+split: dev
+suite: pilot-v0
+license: CC-BY-4.0
+dataset_snapshot: shared/fixtures
+compute_tier: cpu-small
+request: Produce a valid pipeline plan to construct an atlas-labeled connectome from T1-space atlas labels and a DWI-space tractogram.
+allowed_tools:
+  - inspect_metadata
+  - validate_transform
+  - resample_labels
+  - build_connectome
+  - write_provenance
+inputs:
+  labels: T1-space atlas labels
+  tractogram_metadata: DWI-space tractogram
+required_behavior: identify spatial mismatch, request or validate a transformation, prohibit direct-space label use
+expected_artifacts:
+  - structured_plan
+  - transformation_provenance
+  - qc_report
+equivalent_solutions:
+  - validate existing T1w-to-DWI transform then nearest-neighbor resample
+  - estimate then apply a documented same-subject transform, then resample
+oracles:
+  execution: required plan and provenance files exist
+  scientific: reject direct-space misuse; accept correctly justified compatible alternatives
+  layers: [L0, L1, L2, L3, L5]
+gold_action: complete
+primary_layer: L3
+required_evidence:
+  - transform_from_to_fields
+  - same_subject_flag
+  - interpolation_mode_if_labels_resampled
+scientific_gold:
+  space: dwi
+  atlas: DesikanKillianyTourville
+  atlas_order: canonical
+  modality: dwi
+  units: streamline_count
+  transform_required: true
+  transform_from: T1w
+  transform_to: dwi
+prohibited_actions:
+  - apply_labels_in_t1_space_to_dwi_tractogram
+uncertainty_criteria: gold_action becomes abstain if transform evidence is missing or subject identity is inconsistent
+resources:
+  max_runtime_s: 300
+  cpu: 2
+  memory_gb: 4
+  network: false
+review_status: draft
+llm_judge_primary: false

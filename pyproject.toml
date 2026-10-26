@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=65.5"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuroagentbench"
+version = "0.1.0"
+description = "Score recorded neuroimaging agent run trees with deterministic L0–L5 oracles."
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+dependencies = [
+  "jsonschema",
+  "PyYAML",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+neuroagentbench = "neuroagentbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["neuroagentbench*", "evaluators*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

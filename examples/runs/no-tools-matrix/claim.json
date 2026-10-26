@@ -1,0 +1,8 @@
+{
+  "run_id": "no-tools",
+  "agent_id": "recorded-fake",
+  "scaffold_id": "recorded-v0",
+  "seed": 0,
+  "agent_claimed_success": true,
+  "gold_action_taken": "complete"
+}
