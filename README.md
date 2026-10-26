@@ -7,14 +7,20 @@ Not the first neuroimaging agent bench.
 ## Go
 
 ```bash
-git clone https://github.com/phindagijimana/neuroagentbench.git
-cd neuroagentbench && pip install -e .
+pip install git+https://github.com/phindagijimana/neuroagentbench.git
 neuroagentbench evaluate \
   --task tasks/connectome/nab-atlas-wrong.yaml \
   --run examples/runs/atlas-wrong/
 ```
 
+```python
+from neuroagentbench import evaluate
+evaluate("task.yaml", "run/")
+```
+
 Python 3.11+. No MRI. No model API. `neuroagentbench run` without a recorded tree exits.
+
+Optional agent transport (evaluate only; does not start an agent): `python -m neuroagentbench.mcp`
 
 ```bash
 pytest tests
